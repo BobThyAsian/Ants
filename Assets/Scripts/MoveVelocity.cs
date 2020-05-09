@@ -9,12 +9,10 @@ public class MoveVelocity : MonoBehaviour, IMoveVelocity
 
     private Rigidbody2D rigidbody2d;
     private Vector3 velocityVector;
-    //private Character_Base characterBase;
 
     private void Awake()
     {
         rigidbody2d = GetComponent<Rigidbody2D>();
-        //characterBase = GetComponent<Character_Base>();
     }
 
     public void SetVelocity(Vector3 velocityVector)
@@ -25,7 +23,11 @@ public class MoveVelocity : MonoBehaviour, IMoveVelocity
     private void FixedUpdate()
     {
         rigidbody2d.velocity = velocityVector * moveSpeed;
-
-        //characterBase.PlayMoveAnim(velocityVector);
+        Vector2 moveDirection = rigidbody2d.velocity;
+        if (moveDirection != Vector2.zero)
+        {
+            float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
+            transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        }
     }
 }

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using CodeMonkey.MonoBehaviours;
+using CodeMonkey;
 
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private CameraFollow cameraFollow;
+    [SerializeField] private Transform playerTransform;
     [SerializeField] private float zoomMin;
     [SerializeField] private float zoomMax;
     [SerializeField] private bool edgeScroll;
     private Vector3 cameraPosition;
     private float zoomSpeed;
-    private float orthoSize = 400f;
+    public float orthoSize = 66.7f;
     private float cameraSpeed;
     private float edgeSize = 30f;
 
@@ -19,13 +21,39 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        float horizontalAxis = Input.GetAxis("Horizontal");
+        float verticalAxis = Input.GetAxis("Vertical");
+
+
         cameraFollow.Setup(() => cameraPosition, () => orthoSize, true, true);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        ManualCameraMovement();
+        FollowCameraZoom();
+        //ManualCameraMovement();
+    }
+
+    private void FollowCameraZoom()
+    {
+        float scrollAxis = Input.GetAxis("Mouse ScrollWheel");
+        zoomSpeed = 1f;
+
+        //Turbo
+        if (Input.GetKey(KeyCode.LeftShift)) zoomSpeed = zoomSpeed * 2;
+
+        //Scroll Positive/In
+        if (scrollAxis < 0 || Input.GetKey(KeyCode.E)) orthoSize += zoomSpeed;
+        //Scroll Negative/Out
+        if (scrollAxis > 0 || Input.GetKey(KeyCode.Q)) orthoSize -= zoomSpeed;
+
+        //Camera Constraints 
+        if (orthoSize <= zoomMin) orthoSize = zoomMin;
+        if (orthoSize >= zoomMax) orthoSize = zoomMax;
+        cameraPosition = playerTransform.position;
+
     }
 
     private void ManualCameraMovement()
@@ -55,9 +83,9 @@ public class GameManager : MonoBehaviour
         
         
         //Scroll Positive/In
-        if (scrollAxis > 0) orthoSize += zoomSpeed;
+        if (scrollAxis < 0) orthoSize += zoomSpeed;
         //Scroll Negative/Out
-        if(scrollAxis < 0) orthoSize -= zoomSpeed;
+        if(scrollAxis > 0) orthoSize -= zoomSpeed;
 
         //Camera Constraints 
         if (orthoSize <= zoomMin) orthoSize = zoomMin;
