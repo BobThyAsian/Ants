@@ -1,4 +1,4 @@
-﻿using CodeMonkey.Utils;
+﻿using Extras.Utils;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,7 +11,7 @@ public class PlayerMovementMouse : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            GetComponent<MovePositionDirect>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
+            GetComponent<MovePositionPathfinding>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
         }
     }
 }

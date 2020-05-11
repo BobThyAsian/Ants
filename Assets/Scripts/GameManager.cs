@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.MonoBehaviours;
-using CodeMonkey;
+using Extras.MonoBehaviours;
+using Extras;
 
 public class GameManager : MonoBehaviour
 {
@@ -10,7 +10,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Transform playerTransform;
     [SerializeField] private float zoomMin;
     [SerializeField] private float zoomMax;
-    [SerializeField] private bool edgeScroll;
+    public GameObject workerPrefab;
+    private GameController gameController;
     private Vector3 cameraPosition;
     private float zoomSpeed;
     public float orthoSize = 66.7f;
@@ -18,6 +19,10 @@ public class GameManager : MonoBehaviour
     private float edgeSize = 30f;
 
 
+    private void Awake()
+    {
+        gameController = GameObject.Find("GameController").GetComponent<GameController>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -32,8 +37,20 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        FollowCameraZoom();
-        //ManualCameraMovement();
+        if (gameController.workers.Count > 0)
+        {
+            cameraPosition = gameController.workers[0].gameObject.transform.position;
+        }
+        if (playerTransform)
+        {
+            FollowCameraZoom();
+
+        }
+        else
+        {
+            ManualCameraMovement();
+
+        }
     }
 
     private void FollowCameraZoom()
@@ -91,5 +108,11 @@ public class GameManager : MonoBehaviour
         if (orthoSize <= zoomMin) orthoSize = zoomMin;
         if (orthoSize >= zoomMax) orthoSize = zoomMax;
 
+    }
+
+    public void CreateWorker()
+    {
+        GameObject worker = Instantiate(workerPrefab, new Vector3(10f, 0f, 0f), Quaternion.identity) as GameObject;
+        worker.GetComponent<MovePositionPathfinding>().SetMovePosition(new Vector3(10f, 0f, 0f));
     }
 }

@@ -1,10 +1,13 @@
-﻿using System.Collections;
+﻿using Extras;
+using Extras.Utils;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class MovePositionPathfinding : MonoBehaviour
 {
     public Vector3 movePosition;
+    private Vector3 moveDir;
 
 
     public void SetMovePosition(Vector3 movePosition)
@@ -14,20 +17,27 @@ public class MovePositionPathfinding : MonoBehaviour
     public void RandomPosition()
     {
 
-        Vector3 tempPos = Random.insideUnitCircle * Random.Range(10f,20f);
-        SetMovePosition(tempPos);
+        Vector3 tempPos = Random.insideUnitCircle*20;
+        SetMovePosition(tempPos.normalized);
         Debug.Log(tempPos.ToString());
     }
     private void Start()
     {
-        InvokeRepeating("RandomPosition", 0.1f, 10f);
-        
+
     }
     // Update is called once per frame
-    void FixedUpdate()
+    void Update()
     {
-        Vector3 moveDir = (Vector3.Distance(transform.position, movePosition) < .1f) ? Vector3.zero : (movePosition - transform.position).normalized;
-        GetComponent<IMoveVelocity>().SetVelocity(moveDir);
+        moveDir = (movePosition - transform.position);
+        float dist = Vector3.Distance(movePosition, transform.position);
+        GetComponent<MoveVelocity>().SetVelocity(moveDir.normalized);
+
+
+
+
+        //Debugging
+        EDebug.TextUpdater( () => movePosition.ToString() + " - " + transform.position.ToString() + " = " + moveDir.ToString() , new Vector3(10f,40f, 1f));
     }
+
 
 }

@@ -14,7 +14,7 @@ public class KeyMovement : MonoBehaviour
         if (Input.GetAxis("Vertical") != 0) moveY = Input.GetAxis("Vertical");
 
         //Set Vector
-        Vector3 moveVector = new Vector3(moveX, moveY).normalized;
-        GetComponent<IMoveVelocity>().SetVelocity(moveVector);
+        Vector3 moveVector = new Vector3(moveX, moveY);
+        if(moveVector != Vector3.zero) GetComponent<IMoveVelocity>().SetVelocity(moveVector);
     }
 }
