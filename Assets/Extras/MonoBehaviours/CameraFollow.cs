@@ -4,10 +4,7 @@ using UnityEngine;
 
 namespace Extras.MonoBehaviours {
 
-    /*
-     * Script to handle Camera Movement and Zoom
-     * Place on Camera GameObject
-     * */
+
     public class CameraFollow : MonoBehaviour {
 
         private Camera myCamera;

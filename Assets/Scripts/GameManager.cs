@@ -88,14 +88,14 @@ public class GameManager : MonoBehaviour
             cameraSpeed = cameraSpeed * 5;
         }
 
-        //Right
-        if (horizontalAxis > 0 || Input.mousePosition.x > Screen.width - edgeSize) cameraPosition.x += cameraSpeed * Time.deltaTime;
-        //Left
-        if (horizontalAxis < 0|| Input.mousePosition.x <  edgeSize) cameraPosition.x -= cameraSpeed * Time.deltaTime;
-        //Up
-        if (verticalAxis > 0 || Input.mousePosition.y > Screen.height - edgeSize) cameraPosition.y += cameraSpeed * Time.deltaTime;
-        //Down
-        if (verticalAxis < 0 || Input.mousePosition.y < edgeSize) cameraPosition.y -= cameraSpeed * Time.deltaTime;
+        //Right|| Input.mousePosition.x > Screen.width - edgeSize
+        if (horizontalAxis > 0 ) cameraPosition.x += cameraSpeed * Time.deltaTime;
+        //Left|| Input.mousePosition.x <  edgeSize
+        if (horizontalAxis < 0) cameraPosition.x -= cameraSpeed * Time.deltaTime;
+        //Up || Input.mousePosition.y > Screen.height - edgeSize
+        if (verticalAxis > 0) cameraPosition.y += cameraSpeed * Time.deltaTime;
+        //Down || Input.mousePosition.y < edgeSize
+        if (verticalAxis < 0) cameraPosition.y -= cameraSpeed * Time.deltaTime;
         
         
         
@@ -113,6 +113,6 @@ public class GameManager : MonoBehaviour
     public void CreateWorker()
     {
         GameObject worker = Instantiate(workerPrefab, new Vector3(10f, 0f, 0f), Quaternion.identity) as GameObject;
-        worker.GetComponent<MovePositionPathfinding>().SetMovePosition(new Vector3(10f, 0f, 0f));
+        worker.GetComponent<MovePositionPathfinding>().movePosition = new Vector3(10f, 0f, 0f);
     }
 }

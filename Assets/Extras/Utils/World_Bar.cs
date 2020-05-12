@@ -2,7 +2,9 @@
 
 namespace Extras.Utils {
 
-
+    /*
+     * Bar in the World, great for quickly making a health bar
+     * */
     public class World_Bar {
         
         private GameObject gameObject;
