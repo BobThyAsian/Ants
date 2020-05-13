@@ -15,6 +15,6 @@ public class Ground : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) ground.SetValue(UtilsClass.GetMouseWorldPosition(), 10);
+        //if (Input.GetMouseButtonDown(0)) ground.AddValue(UtilsClass.GetMouseWorldPosition(), 10, 2, 15);
     }
 }
