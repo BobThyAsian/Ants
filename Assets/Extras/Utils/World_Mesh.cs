@@ -2,6 +2,9 @@
 
 namespace Extras.Utils {
 
+    /*
+     * Mesh in the World
+     * */
     public class World_Mesh {
         
         private const int sortingOrderDefault = 5000;

@@ -2,7 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GridBase
+public class Grid
 {
 
     private int width;
@@ -12,17 +12,7 @@ public class GridBase
     private Vector3 originPosition;
     private TextMesh[,] debugArray;
 
-    public GridBase()
-    {
-
-    }
-
-    public void Build(int width, int height, float cellSize)
-    {
-        Build(width, height, cellSize, new Vector3(0,0) );
-    }
-
-    public void Build(int width, int height, float cellSize, Vector3 originPosition)
+    public Grid(int width, int height, float cellSize, Vector3 originPosition)
     {
         this.width = width;
         this.height = height;
@@ -36,7 +26,7 @@ public class GridBase
         {
             for (int y=0; y < gridArray.GetLength(1); y++)
             {
-                debugArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) *.5f, 8, Color.white, TextAnchor.MiddleCenter);
+                debugArray[x,y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPosition(x, y) + new Vector3(cellSize,cellSize) *.5f, Mathf.FloorToInt(8 * cellSize), Color.white, TextAnchor.MiddleCenter);
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x, y + 1), Color.white, 100f );
                 Debug.DrawLine(GetWorldPosition(x, y), GetWorldPosition(x+1, y), Color.white, 100f);
             }
@@ -45,6 +35,7 @@ public class GridBase
         Debug.DrawLine(GetWorldPosition(width, 0), GetWorldPosition(width, height), Color.white, 100f);
 
         SetValue(0, 0, 50);
+
     }
 
     private Vector3 GetWorldPosition(int x, int y)

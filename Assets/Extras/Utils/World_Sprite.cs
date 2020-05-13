@@ -2,6 +2,9 @@
 
 namespace Extras.Utils {
 
+    /*
+     * Sprite in the World
+     * */
     public class World_Sprite {
         
         private const int sortingOrderDefault = 5000;
