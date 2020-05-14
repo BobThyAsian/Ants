@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Extras.Utils;
 
-public class Grid
+public class Grid<TGridObject>
 {
 
     public const int HEAT_MAP_MAX_VALUE = 100;
@@ -21,7 +21,7 @@ public class Grid
     private int height;
     private float cellSize;
     private Vector3 originPosition;
-    private int[,] gridArray;
+    private TGridObject[,] gridArray;
 
     public Grid(int width, int height, float cellSize, Vector3 originPosition)
     {
@@ -30,9 +30,9 @@ public class Grid
         this.cellSize = cellSize;
         this.originPosition = originPosition;
 
-        gridArray = new int[width, height];
+        gridArray = new TGridObject[width, height];
 
-        bool showDebug = false;
+        bool showDebug = true;
         if (showDebug)
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
@@ -81,28 +81,24 @@ public class Grid
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
     }
 
-    public void SetValue(int x, int y, int value)
+    public void SetValue(int x, int y, TGridObject value)
     {
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
-            gridArray[x, y] = Mathf.Clamp(value, HEAT_MAP_MIN_VALUE, HEAT_MAP_MAX_VALUE);
+            gridArray[x, y] = value;
             if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
         }
     }
 
-    public void SetValue(Vector3 worldPosition, int value)
+    public void SetValue(Vector3 worldPosition, TGridObject value)
     {
         int x, y;
         GetXY(worldPosition, out x, out y);
         SetValue(x, y, value);
     }
 
-    public void AddValue(int x, int y, int value)
-    {
-        SetValue(x, y, GetValue(x, y) + value);
-    }
 
-    public int GetValue(int x, int y)
+    public TGridObject GetValue(int x, int y)
     {
         if (x >= 0 && y >= 0 && x < width && y < height)
         {
@@ -110,49 +106,17 @@ public class Grid
         }
         else
         {
-            return 0;
+            return default(TGridObject);
         }
     }
 
-    public int GetValue(Vector3 worldPosition)
+    public TGridObject GetValue(Vector3 worldPosition)
     {
         int x, y;
         GetXY(worldPosition, out x, out y);
         return GetValue(x, y);
     }
 
-    public void AddValue(Vector3 worldPosition, int value, int fullValueRange, int totalRange)
-    {
-        int lowerValueAmount = Mathf.RoundToInt((float)value / (totalRange - fullValueRange));
-
-        GetXY(worldPosition, out int originX, out int originY);
-        for (int x = 0; x < totalRange; x++)
-        {
-            for (int y = 0; y < totalRange - x; y++)
-            {
-                int radius = x + y;
-                int addValueAmount = value;
-                if (radius >= fullValueRange)
-                {
-                    addValueAmount -= lowerValueAmount * (radius - fullValueRange);
-                }
-
-                AddValue(originX + x, originY + y, addValueAmount);
-
-                if (x != 0)
-                {
-                    AddValue(originX - x, originY + y, addValueAmount);
-                }
-                if (y != 0)
-                {
-                    AddValue(originX + x, originY - y, addValueAmount);
-                    if (x != 0)
-                    {
-                        AddValue(originX - x, originY - y, addValueAmount);
-                    }
-                }
-            }
-        }
-    }
+    
 
 }

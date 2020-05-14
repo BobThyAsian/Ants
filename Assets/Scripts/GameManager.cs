@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float zoomMin;
     [SerializeField] private float zoomMax;
     public GameObject workerPrefab;
+    public GameObject enemyPrefab;
     private GameController gameController;
     private Vector3 cameraPosition;
     private float zoomSpeed;
@@ -108,6 +109,11 @@ public class GameManager : MonoBehaviour
         if (orthoSize <= zoomMin) orthoSize = zoomMin;
         if (orthoSize >= zoomMax) orthoSize = zoomMax;
 
+    }
+    public void CreateEnemy()
+    {
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(20f, 0f, 0f), Quaternion.identity) as GameObject;
+        enemy.GetComponent<MovePositionPathfinding>().movePosition = new Vector3(20f, 0f, 0f);
     }
 
     public void CreateWorker()
