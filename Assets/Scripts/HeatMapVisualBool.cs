@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class HeatMapVisual : MonoBehaviour {
+public class HeatMapVisualBool : MonoBehaviour {
 
-    private Grid<int> grid;
+    private Grid<bool> grid;
     private Mesh mesh;
     private bool updateMesh;
 
@@ -13,15 +13,15 @@ public class HeatMapVisual : MonoBehaviour {
         GetComponent<MeshFilter>().mesh = mesh;
     }
 
-    public void SetGrid(Grid<int> grid) {
+    public void SetGrid(Grid<bool> grid) {
         this.grid = grid;
         UpdateHeatMapVisual();
 
         grid.OnGridValueChanged += Grid_OnGridValueChanged;
     }
 
-    private void Grid_OnGridValueChanged(object sender, Grid<int>.OnGridValueChangedEventArgs e) {
-        UpdateHeatMapVisual();
+    private void Grid_OnGridValueChanged(object sender, Grid<bool>.OnGridValueChangedEventArgs e) {
+        //UpdateHeatMapVisual();
         updateMesh = true;
     }
 
@@ -40,8 +40,8 @@ public class HeatMapVisual : MonoBehaviour {
                 int index = x * grid.GetHeight() + y;
                 Vector3 quadSize = new Vector3(1, 1) * grid.GetCellSize();
 
-                int gridValue = grid.GetValue(x, y);
-                float gridValueNormalized = (float)gridValue / Grid<int>.HEAT_MAP_MAX_VALUE;
+                bool gridValue = grid.GetValue(x, y);
+                float gridValueNormalized = gridValue ? 1f : 0f;
                 Vector2 gridValueUV = new Vector2(gridValueNormalized, 0f);
                 MeshUtils.AddToMeshArrays(vertices, uv, triangles, index, grid.GetWorldPosition(x, y) + quadSize * .5f, 0f, quadSize, gridValueUV, gridValueUV);
             }
