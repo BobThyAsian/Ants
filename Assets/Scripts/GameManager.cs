@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
     {
         float horizontalAxis = Input.GetAxis("Horizontal");
         float verticalAxis = Input.GetAxis("Vertical");
+        cameraPosition = new Vector3(250, 250);
 
 
         cameraFollow.Setup(() => cameraPosition, () => orthoSize, true, true);
@@ -112,13 +113,13 @@ public class GameManager : MonoBehaviour
     }
     public void CreateEnemy()
     {
-        GameObject enemy = Instantiate(enemyPrefab, new Vector3(20f, 0f, 0f), Quaternion.identity) as GameObject;
-        enemy.GetComponent<MovePositionPathfinding>().movePosition = new Vector3(20f, 0f, 0f);
+        GameObject enemy = Instantiate(enemyPrefab, new Vector3(260f, 250f, 0f), Quaternion.identity) as GameObject;
+        enemy.GetComponent<MovePositionPathfinding>().target = new Vector3(260f, 250f, 0f);
     }
 
     public void CreateWorker()
     {
-        GameObject worker = Instantiate(workerPrefab, new Vector3(10f, 0f, 0f), Quaternion.identity) as GameObject;
-        worker.GetComponent<MovePositionPathfinding>().movePosition = new Vector3(10f, 0f, 0f);
+        GameObject worker = Instantiate(workerPrefab, new Vector3(250f, 250f, 0f), Quaternion.identity) as GameObject;
+        worker.GetComponent<MovePositionPathfinding>().target = new Vector3(250f, 250f, 0f);
     }
 }

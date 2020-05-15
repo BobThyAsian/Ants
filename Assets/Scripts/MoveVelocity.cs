@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class MoveVelocity : MonoBehaviour
 {
-    [SerializeField] private float speed = 12f;
+    [SerializeField] private float speed = 40f;
     private Rigidbody2D rigidbody2d;
     private Vector3 movePosition;
     private float dist;
@@ -32,7 +32,7 @@ public class MoveVelocity : MonoBehaviour
 
     private void HandleRotation()
     {
-        Vector3 vectorToTarget = moveDir;
+        Vector3 vectorToTarget = movePosition;
         if (dist > .3f)
         {
             transform.LookAt(transform.position + new Vector3(0, 0, 1), vectorToTarget);
@@ -44,7 +44,7 @@ public class MoveVelocity : MonoBehaviour
     {
         if (dist > .3f)
         {
-            rigidbody2d.velocity = moveDir * speed;
+            rigidbody2d.velocity = moveDir * speed * Time.deltaTime;
         }
         if (dist < .3f)
         {

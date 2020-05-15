@@ -290,7 +290,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1, y: 1, z: -100}
+  m_LocalPosition: {x: 250, y: 250, z: -100}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 665995572}
@@ -396,6 +396,7 @@ GameObject:
   m_Component:
   - component: {fileID: 703619294}
   - component: {fileID: 703619295}
+  - component: {fileID: 703619296}
   m_Layer: 0
   m_Name: Background
   m_TagString: Untagged
@@ -411,7 +412,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 703619293}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 250, y: 250, z: 0}
   m_LocalScale: {x: 500, y: 500, z: 1}
   m_Children: []
   m_Father: {fileID: 665995572}
@@ -467,6 +468,18 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &703619296
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 703619293}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6cd3680f96a0bfe4595562c1c2508fef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &710599114
 GameObject:
   m_ObjectHideFlags: 0
@@ -852,8 +865,6 @@ GameObject:
   m_Component:
   - component: {fileID: 929360905}
   - component: {fileID: 929360904}
-  - component: {fileID: 929360906}
-  - component: {fileID: 929360907}
   m_Layer: 0
   m_Name: Grid
   m_TagString: Untagged
@@ -888,31 +899,6 @@ Transform:
   m_Father: {fileID: 665995572}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &929360906
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929360903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6cd3680f96a0bfe4595562c1c2508fef, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  heatMap: {fileID: 1837102589}
---- !u!114 &929360907
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 929360903}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1459d5bc82575047be8f709311b9d52, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &997222973
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,6 +8,7 @@ public class AntAnimation : MonoBehaviour
     [SerializeField] private float frameRate;
     [SerializeField] private Sprite[] MoveAnimationFrameArray;
     [SerializeField] private Sprite[] IdleAnimationFrameArray;
+    public bool moving;
     private enum AnimationType
     {
         Move,
@@ -18,7 +19,6 @@ public class AntAnimation : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rBody = GetComponent<Rigidbody2D>();
         spriteAnimator.playAnimation(IdleAnimationFrameArray, 1f);
     }
 
@@ -26,7 +26,7 @@ public class AntAnimation : MonoBehaviour
     void Update()
     {
         //If moving, animate
-        if (rBody.velocity.magnitude == 0)
+        if (!moving)
         {
             PlayAnimation(AnimationType.Idle);
         }else
@@ -35,6 +35,8 @@ public class AntAnimation : MonoBehaviour
 
         }
     }
+
+    public void SetMoving(bool moving) { this.moving = moving; }
     private void PlayAnimation(AnimationType animationType)
     {
         if (animationType != activeAnimationType)

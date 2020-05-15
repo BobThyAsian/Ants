@@ -20,7 +20,7 @@ public class Grid<TGridObject>
     private Vector3 originPosition;
     private TGridObject[,] gridArray;
 
-    public Grid(int width, int height, float cellSize, Vector3 originPosition, Func<TGridObject> createGridObject)
+    public Grid(int width, int height, float cellSize, Vector3 originPosition, Func<Grid<TGridObject>, int, int, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
@@ -33,12 +33,12 @@ public class Grid<TGridObject>
         {
             for (int y = 0; y < gridArray.GetLength(1); y++)
             {
-                gridArray[x, y] = createGridObject();
+                gridArray[x, y] = createGridObject(this, x, y);
             }
         }
 
 
-        bool showDebug = true;
+        bool showDebug = false;
         if (showDebug)
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
@@ -82,7 +82,7 @@ public class Grid<TGridObject>
         return new Vector3(x, y) * cellSize + originPosition;
     }
 
-    private void GetXY(Vector3 worldPosition, out int x, out int y)
+    public void GetXY(Vector3 worldPosition, out int x, out int y)
     {
         x = Mathf.FloorToInt((worldPosition - originPosition).x / cellSize);
         y = Mathf.FloorToInt((worldPosition - originPosition).y / cellSize);
@@ -104,6 +104,10 @@ public class Grid<TGridObject>
         SetGridObject(x, y, value);
     }
 
+    public void TriggerChange(int x, int y)
+    {
+        if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
+    }
 
     public TGridObject GetGridObject(int x, int y)
     {

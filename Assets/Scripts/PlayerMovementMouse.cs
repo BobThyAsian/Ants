@@ -14,4 +14,7 @@ public class PlayerMovementMouse : MonoBehaviour
             GetComponent<MovePositionPathfinding>().SetMovePosition(UtilsClass.GetMouseWorldPosition());
         }
     }
+
+
+
 }
