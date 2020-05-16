@@ -14,7 +14,7 @@ public class Ground : MonoBehaviour
     void Start()
     {
         //ground = new Grid<HeatMapGridObject>(50, 50, 10f, new Vector3(-250f, -250f), (Grid<HeatMapGridObject> g, int x, int y ) => new HeatMapGridObject());
-        pathfinding = new Pathfinding(50, 50);
+        pathfinding = new Pathfinding(100, 100);
         
         //heatMap.SetGrid(ground);
 

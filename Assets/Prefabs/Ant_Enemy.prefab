@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 5979143798677911175}
   - component: {fileID: 5979143798677911174}
   - component: {fileID: 5979143798677911225}
-  - component: {fileID: 5979143798677911224}
   - component: {fileID: 5979143798677911227}
   - component: {fileID: 5979143798677911226}
   - component: {fileID: 5979143798677911229}
@@ -102,19 +101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   frameArray: []
---- !u!114 &5979143798677911224
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5979143798677911230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ad6614fc70f66468b79a11148896a9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 12
 --- !u!114 &5979143798677911227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -127,7 +113,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9229386c5ec7e7c4bb8b8820c4e1af39, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movePosition: {x: 0, y: 0, z: 0}
+  speed: 12
+  target: {x: 0, y: 0, z: 0}
 --- !u!50 &5979143798677911226
 Rigidbody2D:
   serializedVersion: 4
@@ -178,13 +165,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spriteAnimator: {fileID: 5979143798677911225}
-  frameRate: 0.2
+  frameRate: 0.5
   MoveAnimationFrameArray:
   - {fileID: 21300000, guid: dc5e40ca48be09f449c17fa6539ede42, type: 3}
   - {fileID: 21300000, guid: d30640a7ea96ab349b025de19aac6ade, type: 3}
   - {fileID: 21300000, guid: 3e9cc2f0026d7c54eb739db5159c02e5, type: 3}
   IdleAnimationFrameArray:
   - {fileID: 21300000, guid: d30640a7ea96ab349b025de19aac6ade, type: 3}
+  moving: 0
 --- !u!114 &5979143798677911231
 MonoBehaviour:
   m_ObjectHideFlags: 0

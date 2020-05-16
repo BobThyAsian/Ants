@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float zoomMax;
     public GameObject workerPrefab;
     public GameObject enemyPrefab;
+    public GameObject queenPrefab;
     private GameController gameController;
     private Vector3 cameraPosition;
     private float zoomSpeed;
@@ -33,7 +34,7 @@ public class GameManager : MonoBehaviour
 
 
         cameraFollow.Setup(() => cameraPosition, () => orthoSize, true, true);
-        
+
     }
 
     // Update is called once per frame
@@ -91,20 +92,20 @@ public class GameManager : MonoBehaviour
         }
 
         //Right|| Input.mousePosition.x > Screen.width - edgeSize
-        if (horizontalAxis > 0 ) cameraPosition.x += cameraSpeed * Time.deltaTime;
+        if (horizontalAxis > 0) cameraPosition.x += cameraSpeed * Time.deltaTime;
         //Left|| Input.mousePosition.x <  edgeSize
         if (horizontalAxis < 0) cameraPosition.x -= cameraSpeed * Time.deltaTime;
         //Up || Input.mousePosition.y > Screen.height - edgeSize
         if (verticalAxis > 0) cameraPosition.y += cameraSpeed * Time.deltaTime;
         //Down || Input.mousePosition.y < edgeSize
         if (verticalAxis < 0) cameraPosition.y -= cameraSpeed * Time.deltaTime;
-        
-        
-        
+
+
+
         //Scroll Positive/In
         if (scrollAxis < 0) orthoSize += zoomSpeed;
         //Scroll Negative/Out
-        if(scrollAxis > 0) orthoSize -= zoomSpeed;
+        if (scrollAxis > 0) orthoSize -= zoomSpeed;
 
         //Camera Constraints 
         if (orthoSize <= zoomMin) orthoSize = zoomMin;
@@ -121,5 +122,11 @@ public class GameManager : MonoBehaviour
     {
         GameObject worker = Instantiate(workerPrefab, new Vector3(250f, 250f, 0f), Quaternion.identity) as GameObject;
         worker.GetComponent<MovePositionPathfinding>().target = new Vector3(250f, 250f, 0f);
+    }
+
+    public void CreateQueen()
+    {
+        GameObject queen = Instantiate(queenPrefab, new Vector3(240f, 250f, 0f), Quaternion.identity) as GameObject;
+        queen.GetComponent<MovePositionPathfinding>().target = new Vector3(240f, 250f, 0f);
     }
 }

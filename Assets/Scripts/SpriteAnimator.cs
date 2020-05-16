@@ -42,7 +42,8 @@ public class SpriteAnimator : MonoBehaviour
             } 
             else
             { 
-                spriteRenderer.sprite = frameArray[currentFrame]; 
+                spriteRenderer.sprite = frameArray[currentFrame];
+                Debug.Log(currentFrame.ToString());
             }
 
             if(currentFrame == 0)
@@ -70,5 +71,6 @@ public class SpriteAnimator : MonoBehaviour
         currentFrame = 0;
         timer = 0f;
         spriteRenderer.sprite = frameArray[currentFrame];
+
     }
 }
