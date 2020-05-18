@@ -7,6 +7,7 @@ public class MovePositionPathfinding : MonoBehaviour
 {
     [SerializeField] private float speed = 12f;
     private List<Vector3> vectorPath;
+    private AntAnimation antAnimation;
     private int currentPIndex;
     public Vector3 target;
     private Vector3 moveDir;
@@ -15,7 +16,7 @@ public class MovePositionPathfinding : MonoBehaviour
 
     private void Awake()
     {
-
+        antAnimation = GetComponent<AntAnimation>();
     }
     private void Start()
     {
@@ -42,12 +43,12 @@ public class MovePositionPathfinding : MonoBehaviour
                 Debug.Log(moveDir.ToString());
                 transform.LookAt(transform.position + new Vector3(0, 0, 1), moveDir);
                 transform.position = transform.position + moveDir * speed * Time.deltaTime;
-                GetComponent<AntAnimation>().SetMoving(true);
+                antAnimation.SetAnimation(1);
             } else
             {
                 currentPIndex++;
                 if (currentPIndex >= vectorPath.Count) { StopMoving(); }
-                GetComponent<AntAnimation>().SetMoving(false);
+                antAnimation.SetAnimation(3);
             }
         }
 

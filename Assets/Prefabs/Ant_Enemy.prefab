@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5979143798677911172}
   m_Layer: 0
   m_Name: Ant_Enemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -32,7 +32,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5979143798677911230}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -100, y: -100, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -150,7 +150,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.75, y: 2.7}
+  m_Size: {x: 0.4, y: 2.3}
   m_Direction: 0
 --- !u!114 &5979143798677911228
 MonoBehaviour:
@@ -170,9 +170,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: dc5e40ca48be09f449c17fa6539ede42, type: 3}
   - {fileID: 21300000, guid: d30640a7ea96ab349b025de19aac6ade, type: 3}
   - {fileID: 21300000, guid: 3e9cc2f0026d7c54eb739db5159c02e5, type: 3}
+  BiteAnimationFrameArray: []
   IdleAnimationFrameArray:
   - {fileID: 21300000, guid: d30640a7ea96ab349b025de19aac6ade, type: 3}
-  moving: 0
+  animationRunning: 0
 --- !u!114 &5979143798677911231
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class Pathfinding
 
     public static Pathfinding Instance { get; private set; }
 
-    private Grid<PathNode> grid;
+    public Grid<PathNode> grid;
     private List<PathNode> openList;
     private List<PathNode> closedList;
 

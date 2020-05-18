@@ -76,9 +76,41 @@ public class GameController : MonoBehaviour
                 }
             }
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            Vector3 targetPosition = UtilsClass.GetMouseWorldPosition();
+            List<Vector3> targetList = GetPositionListAround(targetPosition, 20f, workers.Count);
+
+            int index = 0;
+
+            foreach (Worker worker in workers)
+            {
+                worker.GetComponent<MovePositionPathfinding>().SetMovePosition(targetList[index]);
+                index = (index + 1) % targetList.Count;
+
+            }
+        }
+
         uiText1.text = "Start: " + startPosition.ToString();
         uiText1.text += " | End: " + endPostion.ToString();
 
-    }
+    } //End Update
+	
+	
+	private List<Vector3> GetPositionListAround(Vector3 startPosition, float distance, int positionCount){
+		List<Vector3> positionList = new List<Vector3>();
+		for (int i = 0; i < positionCount; i++){
+			float angle = i * (360f / positionCount);
+			Vector3 dir = ApplyRotationToVector(new Vector3(1, 0), angle);
+			Vector3 position = startPosition + dir * distance;
+			positionList.Add(position);
+		}
+		return positionList;
+	}
+	
+	private Vector3 ApplyRotationToVector(Vector3 vec, float angle){
+		return Quaternion.Euler(0, 0, angle) * vec;
+	}
 
 }

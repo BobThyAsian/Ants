@@ -5,12 +5,12 @@ using UnityEngine;
 public class Worker : MonoBehaviour
 {
     private GameObject selectedGameObject;
-    private PlayerMovementMouse moveScript;
+    private AntAnimation antAnimation;
 
     private void Awake()
     {
         selectedGameObject = transform.Find("Selected").gameObject;
-        moveScript = GetComponent<PlayerMovementMouse>();
+        antAnimation = GetComponent<AntAnimation>();
         SetSelectedVisible(false);
     }
     // Start is called before the first frame update
@@ -27,6 +27,6 @@ public class Worker : MonoBehaviour
     public void SetSelectedVisible(bool visible)
     {
         selectedGameObject.SetActive(visible);
-        moveScript.enabled = visible;
+
     }
 }

@@ -96,7 +96,6 @@ GameObject:
   - component: {fileID: 5136201462114223401}
   - component: {fileID: 5136201462114223400}
   - component: {fileID: 5136201462114223402}
-  - component: {fileID: 2123184180}
   - component: {fileID: 7004336273823498803}
   m_Layer: 0
   m_Name: Ant_Worker
@@ -113,7 +112,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5136201462114223377}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -100, y: -100, z: 0}
   m_LocalScale: {x: 5, y: 5, z: 1}
   m_Children:
   - {fileID: 1224788985}
@@ -214,7 +213,7 @@ Rigidbody2D:
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
@@ -232,7 +231,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: -0.2}
-  m_Size: {x: 0.75, y: 2.7}
+  m_Size: {x: 0.4, y: 2.3}
   m_Direction: 0
 --- !u!114 &5136201462114223402
 MonoBehaviour:
@@ -252,21 +251,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 1c8b556b3b76c024c8bc7c3438adf6dd, type: 3}
   - {fileID: 21300000, guid: 099cbd47257ccaa47a210c6b4d0d6608, type: 3}
   - {fileID: 21300000, guid: fa3abcb6a1f0a1648b8d981cabff525d, type: 3}
+  BiteAnimationFrameArray:
+  - {fileID: 21300000, guid: 36c2fdb4c01e96446bb49ecb3cd0c375, type: 3}
+  - {fileID: 21300000, guid: 099cbd47257ccaa47a210c6b4d0d6608, type: 3}
+  - {fileID: 21300000, guid: e4997098c34e1f34cab13b4551669c89, type: 3}
   IdleAnimationFrameArray:
   - {fileID: 21300000, guid: 099cbd47257ccaa47a210c6b4d0d6608, type: 3}
-  moving: 0
---- !u!114 &2123184180
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5136201462114223377}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a914e411b44212f4589d63d0430aa7df, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  animationRunning: 0
 --- !u!114 &7004336273823498803
 MonoBehaviour:
   m_ObjectHideFlags: 0
